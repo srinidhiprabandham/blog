@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router'
-
+import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 
 //This is the default Container component
 import Container from "./components/Container.js"

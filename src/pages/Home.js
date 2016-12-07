@@ -1,12 +1,38 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
 
 import BlogFilter from "../components/BlogFilter.js"
 import BlogCategories from "../components/BlogCategories.js"
-import BlogContentHeader from "../components/BlogContentHeader.js"
+//import BlogContentHeader from "../components/BlogContentHeader.js"
 import BlogSnippet from "../components/BlogSnippet.js"
 
 class Home extends Component {
+  //Every component has and maintaines it's own state.
+  constructor() {
+    super();
+    //Here we are setting the state to be an object that has posts array.
+    //Don't know if this is the best way or to maintain one global state
+    //Could not find documentation.
+    this.state = {
+      posts: []
+    }
+  }
+
+  //On Mounting of a component we fire the ajax query
+  //To get data.
+  componentDidMount() {
+    //This convoluted binding is needed other wise we wont have access to `this` and thus no access to 
+    //the Components state or its props
+    this.BlogRequest = $.getJSON("/blog_posts.json", function(data) {
+      this.setState({posts: data});
+    }.bind(this));
+  }
+
   render() {
+    var Blog= function(blog,i) {
+      //TODO change props to just take the object as is and then render based on that.
+      return(<BlogSnippet key={i} author={blog.author} created_at={blog.created_at} title={blog.title} categories={blog.categories} />)
+    }
     return (
       <div className='row'>
         {/*This is the left filters*/}
@@ -16,12 +42,10 @@ class Home extends Component {
           <BlogCategories />
         </div>
         {/*This is the main content*/}
-        <div className='col-md-8'>
+        <div className='col-md-8' id='blog_posts'>
           {/*<BlogContentHeader /> */}
-          {/* Now query the backend and get all blogs saved*/}
-          <BlogSnippet author={'Prabandham Srinidhi'} created_at={'11/11/2016'} title={'Intro to ReactJS'} categories={["Programing","Javascript","Single Page Application","Facebook"]}/>
-          <BlogSnippet author={'Ashwin J'} created_at={'16/11/2016'} title={'Navsion the complete ERP'} categories={["Programing","ERP", "Microsoft"]}/>
-          <BlogSnippet author={'Rashmi Jain'} created_at='10/09/2016' title={'A trek to remember'} categories={["Travel","Outdoor","Nature","Serene"]}/>
+          //We loop through the entire posts which is in the state and render each one.
+          <ul>{this.state.posts.map(Blog)}</ul>
         </div>
       </div>
     )
