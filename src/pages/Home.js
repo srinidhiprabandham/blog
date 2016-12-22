@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 
 import BlogFilter from "../components/BlogFilter.js"
-import BlogCategories from "../components/BlogCategories.js"
+//import BlogCategories from "../components/BlogCategories.js"
 //import BlogContentHeader from "../components/BlogContentHeader.js"
 import BlogSnippet from "../components/BlogSnippet.js"
 
@@ -34,18 +34,18 @@ class Home extends Component {
       return(<BlogSnippet key={i} author={blog.author} created_at={blog.created_at} title={blog.title} categories={blog.categories} />)
     }
     return (
-      <div className='row'>
-        {/*This is the left filters*/}
-        <div className='col-md-4'>
-          <BlogFilter />
+      <div className="container">
 
-          <BlogCategories />
+        <div className='row'>
+          <BlogFilter />
         </div>
-        {/*This is the main content*/}
-        <div className='col-md-8' id='blog_posts'>
-          {/*<BlogContentHeader /> */}
-          //We loop through the entire posts which is in the state and render each one.
-          <ul>{this.state.posts.map(Blog)}</ul>
+
+        <div className='row'>
+          <div className='content' id='blog_posts'>
+            {/*<BlogContentHeader /> */}
+            {/*//We loop through the entire posts which is in the state and render each one.*/}
+            <ul>{this.state.posts.map(Blog)}</ul>
+          </div>
         </div>
       </div>
     )

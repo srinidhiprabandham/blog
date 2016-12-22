@@ -4,11 +4,10 @@ class BlogFilter extends Component {
   render() {
     return(
       <div className="well">
-        <h4>Blog Search</h4>
         <div className="input-group">
-          <input type="text" className="form-control" />
+          <input type="text" className="form-control" placeholder="Search Blogs"/>
           <span className="input-group-btn">
-            <button className="btn btn-default" type="button">
+            <button className="btn btn-lg" type="button">
               <span className="glyphicon glyphicon-search"></span>
             </button>
           </span>

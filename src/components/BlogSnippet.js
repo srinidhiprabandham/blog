@@ -6,13 +6,12 @@ class BlogSnippet extends Component {
       <div className="row">
         <h2><a href="#">{this.props.title}</a></h2>
         <p className="lead">
-          by <a href="index.php">{this.props.author}</a>
-        </p>
-        <p className="lead">
-          by <a href="index.php">{this.props.created_at}</a>
+          <small>by <a href="#">{this.props.author}</a></small>
+          <span className="pull-right">
+            <small>on - {this.props.created_at}</small>
+          </span>
         </p>
         <hr />
-
         <img className="img-responsive" src="http://placehold.it/900x300" alt="" />
         <hr />
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
